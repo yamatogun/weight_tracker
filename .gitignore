@@ -1,0 +1,5 @@
+geckodriver.log
+weight_tracker/__pycache__
+functional_tests/__pycache__
+*.swp
+*.pyc
