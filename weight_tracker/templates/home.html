@@ -4,13 +4,16 @@
    <title>Weight Tracker</title>
 
     Enter your weight:
+
     <form method="post">
       <input id="weight_entry" name="new_weight" type="text">
       {% csrf_token %}
     </form>
 
     <ul id="weight_list">
-      <li>{{new_weight}}</li>
+      {% for weight in weights %}
+        <li>{{forloop.counter}} - {{weight.date}} : {{weight.value}}</li>
+      {% endfor %}
     </ul>
 
   </body>
