@@ -26,4 +26,16 @@ class WeightTrackerTest(TestCase):
         weight_entries = ul.find_elements_by_tag_name('li')
         self.assertIn('60', [weight.text for weight in weight_entries])
 
+        # adding another weight value
+        input = self.browser.find_element_by_id('weight_entry')
+        input.send_keys('65')
+        input.send_keys(Keys.ENTER)
+
+        time.sleep(1)
+
+        ul = self.browser.find_element_by_id('weight_list')
+        weight_entries = ul.find_elements_by_tag_name('li')
+        self.assertIn('60', [weight.text for weight in weight_entries])
+        self.assertIn('65', [weight.text for weight in weight_entries])
+
         self.fail('--- end of tests ---')
