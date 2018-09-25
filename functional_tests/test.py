@@ -1,3 +1,5 @@
+import time
+
 from selenium import webdriver
 from django.test import TestCase
 from selenium.webdriver.common.keys import Keys
@@ -16,12 +18,12 @@ class WeightTrackerTest(TestCase):
 
         input = self.browser.find_element_by_id('weight_entry')
         input.send_keys('60')
-        input.send_keys(Keys.Keys.ENTER)
+        input.send_keys(Keys.ENTER)
 
         time.sleep(1)
 
-        ul = self.browser.find_element_by_id('ul')
-        weight_entries = table.find_element_by_class_name('li')
-        self.assertIn('60', weight_entries)
+        ul = self.browser.find_element_by_id('weight_list')
+        weight_entries = ul.find_elements_by_tag_name('li')
+        self.assertIn('60', [weight.text for weight in weight_entries])
 
         self.fail('--- end of tests ---')

@@ -10,3 +10,7 @@ class TestHomePage(TestCase):
 
         html = response.content.decode('utf8')
         self.assertIn('Weight Tracker', html)
+
+    def test_display_post_data(self):
+        response = self.client.post('/', {'new_weight': '50'})
+        self.assertIn('50', response.content.decode('utf8'))
